@@ -2,6 +2,10 @@ import pandas
 from datetime import datetime
 import random
 import smtplib
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 PLACEHOLDER = "[NAME]"
 
@@ -48,8 +52,8 @@ for index, row in birthdays_df.iterrows():
             birthday_email_with_name = birthday_email.replace(PLACEHOLDER, name)
 
 # 4. Send the letter generated in step 3 to all people sharing the same birthday.
-my_email = "selormepythontest@gmail.com"
-password = "yplffpefoqvsqyub"
+my_email = os.environ["MY_EMAIL"]
+password = os.environ["PASSWORD"]
 
 with smtplib.SMTP("smtp.gmail.com") as connection:
     connection.starttls()
